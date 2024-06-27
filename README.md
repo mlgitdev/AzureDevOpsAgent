@@ -30,6 +30,10 @@ agent_pool_name: "Default"
 
 agent_name: "agent"
 
+# Azure DevOps agent user
+
+agent_user: "azagent"
+
 # Azure DevOps agent token
 
 agent_token: "agent-token"
@@ -75,6 +79,7 @@ ansible-galaxy install farisc0de.azdevopsagent
         organization_name: "Innovaox"
         agent_pool_name: "Default"
         agent_name: "agent"
+        agent_user: "azagent"
         agent_token: "agent-token"
         agent_work_directory: "_work"
         agent_user: "agent-user"
