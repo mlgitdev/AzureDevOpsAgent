@@ -1,27 +1,34 @@
+- name: "Add an agent user"
+  user:
+    name: "{{ agent_user }}"
+    group: "{{ agent_user }}"
+    comment: "Azure DevOps Agent"
+    shell: /bin/bash
+  become: true
+  tags: azuredevops
+
+- name: "Check AzureDevOps Agent verison"
+  become_user: "{{ agent_user }}"
+  azure_devosp:
+    action: check_version
+  register: is_version_valid
+  tags: azuredevops
+
 - name: "Download Azure DevOps Agent"
-  become_user: "{{ username }}"
+  become_user: "{{ agent_user }}"
   azure_devops:
     action: download
-    version: "{{ version }}"
   ignore_errors: true
   tags: azuredevops
+  when: is_version_valid.changed | bool
 
-- name: "Install Azure DevOps Agent"
-  become_user: "{{ username }}"
-  azure_devops:
-    action: install
-    agentname: "{{ agentname }}"
-    url: "{{ orgnization_url }}"
-    token: "{{ token }}"
-    pool: "{{ pool_name }}"
-    dgname: "{{ deploymentgroupname }}"
-    projectname: "{{ projectname }}"
-  ignore_errors: true
-  tags: azuredevops
+- include_tasks: configure_azagent.yml
+  when: is_version_valid.changed | bool
 
 - name: Start Agent
-  become_user: "{{ username }}"
+  become_user: "{{ agent_user }}"
   azure_devops:
     action: start
   ignore_errors: true
   tags: azuredevops
+  when: is_version_valid.changed | bool

@@ -2,9 +2,30 @@
 
 source $1
 
+# Check if the installed version is the same as the version in the inventory
+
+function check_version {
+    cd $agent_installation_directory
+    
+    installed_version=$(./bin/Agent.Listener --version)
+    
+    if [ "$installed_version" == "$agent_version" ]; then
+        changed=false
+        msg="Azure DevOps Agent is already installed"
+        
+        print_status "$changed" "$msg"
+        
+        exit 0
+    fi
+}
+
 # Download the Azure DevOps Agent
 
 function download_agent {
+    if [ ! -d "$agent_installation_directory" ]; then
+        mkdir -p $agent_installation_directory
+    fi
+    
     cd $agent_installation_directory
     
     curl -fkSL -o vsts-agent-linux-x64.tar.gz $agent_download_url
@@ -164,6 +185,9 @@ function print_status() {
 
 
 case $action in
+    check_version)
+        check_version
+    ;;
     download)
         download_agent
     ;;

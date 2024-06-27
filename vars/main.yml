@@ -28,9 +28,13 @@ agent_token: "agent-token"
 
 agent_work_directory: "_work"
 
+# Azure DevOps agent user
+
+agent_user: "azagent"
+
 # Azure DevOps agent installation directory
 
-agent_installation_directory: "/opt/azure-devops-agent"
+agent_installation_directory: "/home/{{ agent_user }}/azagent"
 
 # Azure DevOps agent download URL
 

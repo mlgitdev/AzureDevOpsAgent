@@ -77,8 +77,9 @@ ansible-galaxy install farisc0de.azdevopsagent
         agent_name: "agent"
         agent_token: "agent-token"
         agent_work_directory: "_work"
-        agent_installation_directory: "/opt/azure-devops-agent"
-        agent_version: "2.186.1"
+        agent_user: "agent-user"
+        agent_installation_directory: "/home/{{ agent_user }}/azure-devops-agent"
+        agent_version: "3.241.0"
         agent_deployment_group_name: "deployment-group"
         agenet_deployment_group_project_name: "deployment-group-project"
 ```
