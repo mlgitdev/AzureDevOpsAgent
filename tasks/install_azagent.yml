@@ -1,0 +1,27 @@
+- name: "Download Azure DevOps Agent"
+  become_user: "{{ username }}"
+  azure_devops:
+    action: download
+    version: "{{ version }}"
+  ignore_errors: true
+  tags: azuredevops
+
+- name: "Install Azure DevOps Agent"
+  become_user: "{{ username }}"
+  azure_devops:
+    action: install
+    agentname: "{{ agentname }}"
+    url: "{{ orgnization_url }}"
+    token: "{{ token }}"
+    pool: "{{ pool_name }}"
+    dgname: "{{ deploymentgroupname }}"
+    projectname: "{{ projectname }}"
+  ignore_errors: true
+  tags: azuredevops
+
+- name: Start Agent
+  become_user: "{{ username }}"
+  azure_devops:
+    action: start
+  ignore_errors: true
+  tags: azuredevops

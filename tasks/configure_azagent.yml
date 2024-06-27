@@ -1,0 +1,13 @@
+---
+- name: "Configure Azure Agent"
+  become_user: "{{ username }}"
+  azure_devops:
+    action: install
+    user: "{{ username }}"
+    agentname: "{{ agentname }}"
+    url: "{{ orgnization_url }}"
+    token: "{{ token }}"
+    dgname: "{{ deploymentgroupname }}"
+    projectname: "{{ projectname }}"
+  ignore_errors: true
+  tags: azuredevops

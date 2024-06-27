@@ -1,0 +1,12 @@
+---
+- name: "Update Azure DevOps PAT"
+  azure_devops:
+    action: update
+    user: "{{ username }}"
+    agentname: "{{ agentname }}"
+    url: "{{ orgnization_url }}"
+    token: "{{ token }}"
+    dgname: "{{ deploymentgroupname }}"
+    projectname: "{{ projectname }}"
+  ignore_errors: true
+  tags: azuredevops

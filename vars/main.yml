@@ -1,0 +1,45 @@
+---
+# vars file for azuredevops
+
+# Azure DevOps organization name
+orgnization_name: "Innovaox"
+
+# Azure DevOps organization URL
+
+orgnization_url: "https://dev.azure.com/{{ orgnization_name }}"
+
+# Azure DevOps Agent Version
+
+agent_version: "3.241.0"
+
+# Azure DevOps agent pool name
+
+agent_pool_name: "Default"
+
+# Azure DevOps agent name
+
+agent_name: "agent"
+
+# Azure DevOps agent token
+
+agent_token: "agent-token"
+
+# Azure DevOps agent work directory
+
+agent_work_directory: "_work"
+
+# Azure DevOps agent installation directory
+
+agent_installation_directory: "/opt/azure-devops-agent"
+
+# Azure DevOps agent download URL
+
+agent_download_url: "https://vstsagentpackage.azureedge.net/agent/{{ agent_version }}/vsts-agent-linux-x64-{{ agent_version }}.tar.gz"
+
+# Azure DevOps Deployment Group name
+
+agent_deployment_group_name: "deployment-group"
+
+# Azure DevOps Deployment Group project name
+
+agent_deployment_group_project_name: "deployment-group-project"

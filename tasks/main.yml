@@ -1,0 +1,3 @@
+---
+# tasks file for azuredevops
+- include_tasks: install_azagent.yml

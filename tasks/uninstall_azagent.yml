@@ -1,0 +1,7 @@
+---
+- name: Uninstall the Agent
+  become_user: "{{ username }}"
+  azure_devops:
+    action: uninstall
+    user: "{{ username }}"
+  tags: azuredevops

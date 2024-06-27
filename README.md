@@ -20,11 +20,7 @@ Ansible role to download, install, and configure Azure DevOps self-hosted agent.
 
 ```yaml
 # Azure DevOps organization URL
-organization_url: "https://dev.azure.com/organization"
-
-# Azure DevOps project name
-
-project_name: "project"
+orgnization_name: "Innovaox"
 
 # Azure DevOps agent pool name
 
@@ -46,10 +42,6 @@ agent_work_directory: "_work"
 
 agent_installation_directory: "/opt/azure-devops-agent"
 
-# Azure DevOps agent version
-
-agent_version: "2.186.1"
-
 # Azure DevOps agent download URL
 
 agent_download_url: "https://vstsagentpackage.azureedge.net/agent/{{ agent_version }}/vsts-agent-linux-x64-{{ agent_version }}.tar.gz"
@@ -67,22 +59,26 @@ agent_deployment_group_project_name: "deployment-group-project"
 
 None
 
+## Installation
+
+```bash
+ansible-galaxy install farisc0de.azdevopsagent
+```
+
 ## Example Playbook
 
 ```yaml
 - hosts: localhost
   roles:
-    - role: ansible-role-azure-devops-agent
+    - role: farisc0de/azdevopsagent
       vars:
-        organization_url: "https://dev.azure.com/organization"
-        project_name: "project"
+        organization_name: "Innovaox"
         agent_pool_name: "Default"
         agent_name: "agent"
         agent_token: "agent-token"
         agent_work_directory: "_work"
         agent_installation_directory: "/opt/azure-devops-agent"
         agent_version: "2.186.1"
-        agent_download_url: "https://vstsagentpackage.azureedge.net/agent/{{ agent_version }}/vsts-agent-linux-x64-{{ agent_version }}.tar.gz"
         agent_deployment_group_name: "deployment-group"
         agenet_deployment_group_project_name: "deployment-group-project"
 ```
