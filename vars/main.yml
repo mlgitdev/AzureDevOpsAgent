@@ -1,6 +1,3 @@
----
-# vars file for azuredevops
-
 # Azure DevOps organization name
 orgnization_name: "Innovaox"
 
@@ -11,10 +8,6 @@ orgnization_url: "https://dev.azure.com/{{ orgnization_name }}"
 # Azure DevOps Agent Version
 
 agent_version: "3.241.0"
-
-# Azure DevOps agent pool name
-
-agent_pool_name: "Default"
 
 # Azure DevOps agent name
 
