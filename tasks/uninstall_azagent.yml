@@ -3,4 +3,6 @@
   become_user: "{{ agent_user }}"
   azure_devops:
     action: uninstall
+    agent_user: "{{ agent_user }}"
+    agent_installation_directory: "{{ agent_installation_directory }}"
   tags: azuredevops
