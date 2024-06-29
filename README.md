@@ -19,20 +19,21 @@ Ansible role to download, install, and configure Azure DevOps self-hosted agent.
 ## Role Variables
 
 ```yaml
-# Azure DevOps organization URL
+# Azure DevOps organization name
+
 orgnization_name: "Innovaox"
 
-# Azure DevOps agent pool name
+# Azure DevOps organization URL
 
-agent_pool_name: "Default"
+orgnization_url: "https://dev.azure.com/{{ orgnization_name }}"
+
+# Azure DevOps Agent Version
+
+agent_version: "3.241.0"
 
 # Azure DevOps agent name
 
 agent_name: "agent"
-
-# Azure DevOps agent user
-
-agent_user: "azagent"
 
 # Azure DevOps agent token
 
@@ -42,9 +43,13 @@ agent_token: "agent-token"
 
 agent_work_directory: "_work"
 
+# Azure DevOps agent user
+
+agent_user: "azagent"
+
 # Azure DevOps agent installation directory
 
-agent_installation_directory: "/opt/azure-devops-agent"
+agent_installation_directory: "/home/{{ agent_user }}/azagent"
 
 # Azure DevOps agent download URL
 
@@ -77,7 +82,6 @@ ansible-galaxy install farisc0de.azdevopsagent
     - role: farisc0de/azdevopsagent
       vars:
         organization_name: "Innovaox"
-        agent_pool_name: "Default"
         agent_name: "agent"
         agent_user: "azagent"
         agent_token: "agent-token"
@@ -87,6 +91,8 @@ ansible-galaxy install farisc0de.azdevopsagent
         agent_version: "3.241.0"
         agent_deployment_group_name: "deployment-group"
         agenet_deployment_group_project_name: "deployment-group-project"
+        agent_download_url: "{{ agent_download_url }}"
+        orgnization_url: "{{ orgnization_url }}"
 ```
 
 ## License
