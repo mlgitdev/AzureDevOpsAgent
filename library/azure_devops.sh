@@ -11,12 +11,38 @@ function check_version {
     
     if [ "$installed_version" == "$agent_version" ]; then
         changed=false
-        msg="Azure DevOps Agent is already installed"
+        msg="Azure DevOps Agent is already up to date"
         
         print_status "$changed" "$msg"
         
         exit 0
     fi
+}
+
+# Upgrade Azure DevOps agent
+
+function upgrade_agent {
+    if [ ! -d "$agent_installation_directory" ]; then
+        failed=true
+        msg="Azure DevOps Agent is not installed"
+        
+        print_error "$failed" "$msg"
+    fi
+    
+    if [ -d "$agent_installation_directory" ]; then
+        check_version
+    fi
+    
+    cd $agent_installation_directory
+    
+    ./svc.sh stop
+    ./svc.sh uninstall
+    
+    rm -rf $agent_installation_directory
+    
+    download_agent
+    install_agent
+    start_agent
 }
 
 # Download the Azure DevOps Agent
@@ -63,7 +89,7 @@ function install_agent {
         agent_name=$(hostname)
     fi
     
-    ./config.sh --unattended --url $orgnization_url --auth pat --token $agent_token --pool $agent_pool_name --agent $agent_name --work $ --deploymentgroup --deploymentgroupname "$agent_deployment_group_name" --projectname "$agent_deployment_group_project_name" --runasservice --acceptTeeEula
+    ./config.sh --unattended --url $orgnization_url --auth pat --token $agent_token --agent $agent_name --work $agent_work_directory --deploymentgroup --deploymentgroupname "$agent_deployment_group_name" --projectname "$agent_deployment_group_project_name" --runasservice --acceptTeeEula
     
     #check if the agent failed to install
     
@@ -86,8 +112,8 @@ function install_agent {
 function start_agent {
     cd $agent_installation_directory
     
-    ./svc.sh install
-    ./svc.sh start
+    sudo ./svc.sh install
+    sudo ./svc.sh start
     
     #check if the agent failed to start
     
@@ -158,7 +184,7 @@ function update_token {
     
     ./config.sh remove --auth pat
     
-    ./config.sh --unattended --url $orgnization_url --auth pat --token $agent_token --pool $agent_pool_name --agent $agent_name --work $agent_work_directory --deploymentgroup --deploymentgroupname "$agent_deployment_group_name" --projectname "$agent_deployment_group_project_name" --runasservice --acceptTeeEula
+    ./config.sh --unattended --url $orgnization_url --auth pat --token $agent_token --agent $agent_name --work $agent_work_directory --deploymentgroup --deploymentgroupname "$agent_deployment_group_name" --projectname "$agent_deployment_group_project_name" --runasservice --acceptTeeEula
     
     #check if the agent failed to update
     
@@ -202,6 +228,9 @@ case $action in
     ;;
     uninstall)
         uninstall_agent
+    ;;
+    upgrade)
+        upgrade_agent
     ;;
     update)
         update_token
