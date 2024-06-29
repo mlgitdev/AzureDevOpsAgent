@@ -7,7 +7,7 @@
   become: true
   tags: azuredevops
 
-- name: "Check AzureDevOps Agent verison"
+- name: "Check AzureDevOps Agent version"
   become_user: "{{ agent_user }}"
   azure_devosp:
     action: check_version
@@ -18,6 +18,7 @@
   become_user: "{{ agent_user }}"
   azure_devops:
     action: download
+    agent_download_url: "{{ agent_download_url }}"
   ignore_errors: true
   tags: azuredevops
   when: is_version_valid.changed | bool
@@ -27,8 +28,11 @@
 
 - name: Start Agent
   become_user: "{{ agent_user }}"
+  become: true
+  become_method: sudo
   azure_devops:
     action: start
+    agent_user: "{{ agent_user }}"
+    agent_installation_directory: "{{ agent_installation_directory }}"
   ignore_errors: true
   tags: azuredevops
-  when: is_version_valid.changed | bool
