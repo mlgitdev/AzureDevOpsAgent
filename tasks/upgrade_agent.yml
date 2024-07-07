@@ -6,12 +6,12 @@
     agent_user: "{{ agent_user }}"
     agent_installation_directory: "{{ agent_installation_directory }}"
     organization_name: "{{ organization_name }}"
-    orgnization_url: "{{ orgnization_url }}"
+    organization_url: "{{ organization_url }}"
     agent_name: "{{ agent_name }}"
     agent_token: "{{ agent_token }}"
     agent_work_directory: "{{ agent_work_directory }}"
     agent_version: "{{ agent_version }}"
     agent_deployment_group_name: "{{ agent_deployment_group_name }}"
-    agenet_deployment_group_project_name: "{{ agenet_deployment_group_project_name }}"
+    agent_deployment_group_project_name: "{{ agent_deployment_group_project_name }}"
   ignore_errors: true
   tags: azuredevops

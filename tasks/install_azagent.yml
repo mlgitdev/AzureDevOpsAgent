@@ -9,7 +9,7 @@
 
 - name: "Check AzureDevOps Agent version"
   become_user: "{{ agent_user }}"
-  azure_devosp:
+  azure_devops:
     action: check_version
   register: is_version_valid
   tags: azuredevops

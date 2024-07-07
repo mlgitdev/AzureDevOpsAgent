@@ -5,6 +5,7 @@ Ansible role to download, install, and configure Azure DevOps self-hosted agent.
 ## Features
 
 - Download and install Azure DevOps self-hosted agent
+  * Currently supported platforms: Linux x86_64
 - Configure Azure DevOps self-hosted agent
 - Start Azure DevOps self-hosted agent
 - Stop Azure DevOps self-hosted agent
@@ -21,11 +22,11 @@ Ansible role to download, install, and configure Azure DevOps self-hosted agent.
 ```yaml
 # Azure DevOps organization name
 
-orgnization_name: "Innovaox"
+organization_name: "Innovaox"
 
 # Azure DevOps organization URL
 
-orgnization_url: "https://dev.azure.com/{{ orgnization_name }}"
+organization_url: "https://dev.azure.com/{{ organization_name }}"
 
 # Azure DevOps Agent Version
 
@@ -90,9 +91,9 @@ ansible-galaxy install farisc0de.azdevopsagent
         agent_installation_directory: "/home/{{ agent_user }}/azure-devops-agent"
         agent_version: "3.241.0"
         agent_deployment_group_name: "deployment-group"
-        agenet_deployment_group_project_name: "deployment-group-project"
+        agent_deployment_group_project_name: "deployment-group-project"
         agent_download_url: "{{ agent_download_url }}"
-        orgnization_url: "{{ orgnization_url }}"
+        organization_url: "{{ organization_url }}"
 ```
 
 ## License

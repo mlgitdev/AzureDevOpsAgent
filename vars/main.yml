@@ -1,9 +1,9 @@
 # Azure DevOps organization name
-orgnization_name: "Innovaox"
+organization_name: "Innovaox"
 
 # Azure DevOps organization URL
 
-orgnization_url: "https://dev.azure.com/{{ orgnization_name }}"
+organization_url: "https://dev.azure.com/{{ organization_name }}"
 
 # Azure DevOps Agent Version
 

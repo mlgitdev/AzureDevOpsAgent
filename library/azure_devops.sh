@@ -89,7 +89,7 @@ function install_agent {
         agent_name=$(hostname)
     fi
     
-    ./config.sh --unattended --url $orgnization_url --auth pat --token $agent_token --agent $agent_name --work $agent_work_directory --deploymentgroup --deploymentgroupname "$agent_deployment_group_name" --projectname "$agent_deployment_group_project_name" --runasservice --acceptTeeEula
+    ./config.sh --unattended --url $organization_url --auth pat --token $agent_token --agent $agent_name --work $agent_work_directory --deploymentgroup --deploymentgroupname "$agent_deployment_group_name" --projectname "$agent_deployment_group_project_name" --runasservice --acceptTeeEula
     
     #check if the agent failed to install
     
@@ -184,7 +184,7 @@ function update_token {
     
     ./config.sh remove --auth pat
     
-    ./config.sh --unattended --url $orgnization_url --auth pat --token $agent_token --agent $agent_name --work $agent_work_directory --deploymentgroup --deploymentgroupname "$agent_deployment_group_name" --projectname "$agent_deployment_group_project_name" --runasservice --acceptTeeEula
+    ./config.sh --unattended --url $organization_url --auth pat --token $agent_token --agent $agent_name --work $agent_work_directory --deploymentgroup --deploymentgroupname "$agent_deployment_group_name" --projectname "$agent_deployment_group_project_name" --runasservice --acceptTeeEula
     
     #check if the agent failed to update
     
